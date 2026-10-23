@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sandy & Ronald</title>
+    <meta name="description" content="Llego el momento de unir nuestro amor por siempre">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nos Casamos">
+    <meta property="og:image" content="https://images.pexels.com/photos/36415880/pexels-photo-36415880.png">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preload" href="/images/sobre-arriba.png" as="image">
+    <link rel="preload" href="/images/sobre-abajo.jpg" as="image">
+    <link rel="preload" href="/images/play.png" as="image">
+    <link rel="preload" href="/images/fc.jpg" as="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script src="https://cdn.lordicon.com/xdjxvujz.js"></script>
+    <script src="https://kit.fontawesome.com/3c219a0781.js" crossorigin="anonymous"></script>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head> 
+<body>
+    <div style="position: absolute; width: 0; height: 0; overflow: hidden;">
+        <i class="fas fa-play"></i>
+        <i class="fas fa-pause"></i>
+    </div>    
+<div class="main-content">
+    <!-- Sección de sobre -->
+    <div id="envelope">
+        <div id="envelope-top"></div>
+        <div id="seal" onclick="openEnvelopeAndPlayMusic()">
+            <h2 class="fade-in-element">S | R</h2>
+        </div>
+        <div id="envelope-bottom"></div>
+    </div>
+    <!-- Sección de invitación -->
+    <div id="invitation" class="hidden">
+          <div class="photo-section fade-in-element">
+             <div class="photo-container">
+                 <img src="/images/fp.jpg" alt="Foto de la pareja" class="photo fade-in-element fade-in-element" loading="lazy">
+             </div>
+                <div class="photo-text">
+                  <h1>Sandy & Ronald</h1>
+                  <h2>13 . 12 . 2026</h2>
+               </div>
+          </div> 
+        <div class="contenedor-play" style="display:none;">
+            <h1 class="texto-play fade-in-element fade-in-element">Hasta mi final - Il Divo</h1>
+            <div id="playPauseButton" class="icono-contenedor fade-in-element fade-in-element">
+                <i id="iconoPlayPause" class="fas fa-play" aria-hidden="true"></i>
+            </div>
+            <audio id="audioPlayer" src="/music/hastamifinal.mp3" loop></audio>
+            <div class="progress-container">
+                <input id="progress-bar" type="range" value="0" min="0" max="100" step="1">
+                <div class="time-display">
+                    <span id="current-time">0:00</span> / <span id="duration-time">0:00</span>
+                </div>
+            </div>            
+        </div>               
+         <div class="content">
+            <div class="photo-section fade-in-element fade-in-element">
+                <div class="photo-container">
+                    <img src="/images/fc.jpg" alt="Foto de la pareja" class="photo fade-in-element fade-in-element">
+                </div>
+                      <div class="photo-text fade-in-element fade-in-element">
+                          <h3 class="title">¡Nos casamos!</h3>
+                           <p>Prometemos amarnos y cuidarnos mutuamente mientras caminamos juntos por el camino del matrimonio. Por eso los invitamos a ser parte de nuestra ceremonia y recepción.</p>
+                          <div class="countdown fade-in-element fade-in-element">
+                              <div class="unit">
+                                 <span id="days" class="number">00</span>
+                                 <span class="label">Días</span>
+                              </div>
+                               <div class="unit">
+                                 <span id="hours" class="number">00</span>
+                                 <span class="label">Horas</span>
+                              </div>
+                             <div class="unit">
+                                 <span id="minutes" class="number">00</span>
+                                 <span class="label">Minutos</span>
+                             </div>
+                             <div class="unit">
+                                 <span id="seconds" class="number">00</span>
+                                 <span class="label">Segundos</span>
+                             </div>
+                         </div>    
+                         <div class="calendar-button fade-in-element fade-in-element" style="margin-top: 20px; text-align:center;">
+                            <a 
+                               href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Sandy%20%26%20Ronald&dates=20261213/20261214" 
+                              target="_blank"
+                              class="btn-calendar"
+                               style="display:inline-block; padding:12px 22px; background:#0B1F3A; color:white; border-radius:8px; text-decoration:none;font-weight:600;">Agregar al Calendario</a>
+                         </div>                
+                      </div>
+                 </div>
+             </div>
+             <div class="child-section fade-in-element">
+                 <img src="/images/BB.png" alt="Nuestro hijo" loading="lazy">
+                 <h2>El fruto de nuestro amor</h2>
+                 <p>Nuestro amor se hizo aún más grande con la llegada de nuestro hijo, la bendición más hermosa de nuestro hogar.</p>
+             </div>
+             <div class="guest-section fade-in-element fade-in-element">
+                      <p id="guest-name" class="fade-in-element"></p>
+                   </div>
+            <div class="invitation-info-section fade-in-element fade-in-element">
+                <p>Invitación válida por <span id="passes"></span> <i class="fa-solid fa-ticket"></i> </p>
+            </div>
+            <div class="itinerary-section fade-in-element fade-in-element">
+                  <div class="itinerary-item">
+                    <lord-icon
+                        src="https://cdn.lordicon.com/fshosubk.json"
+                        stroke="light"
+                        colors="primary:#5F6D4B,secondary:#A6B48B" 
+                        class="lord-icon-style"
+                    ></lord-icon>
+                     <h2>Ceremonia &amp; Recepción</h2>
+                     <p>Villa Floresta</p>
+                       <div class="itinerary-details">
+                         <div class="time-location">
+                              <span class="date">13 de Diciembre</span>
+                             <span class="separator">|</span>
+                              <span class="time">5:00 pm</span>
+                         </div>
+                           <p class="location">Huehuetenango, Guatemala</p>
+                           <button type="button"  class="directions-button" onclick="location.href='https://maps.app.goo.gl/dBsPpqnLm6ifjyce9'">CÓMO LLEGAR</button>
+                      </div>
+                   </div> 
+
+                 <div class="itinerary-item" style="display:none;">
+                    <lord-icon 
+                     src="https://cdn.lordicon.com/lhzhnixi.json"  
+                     stroke="light" 
+                     colors="primary:#5F6D4B,secondary:#A6B48B" 
+                     class="lord-icon-style"
+                     ></lord-icon>
+                    <h2>Recepción</h2>
+                    <p>Plaza Granada, Xejuyup, Irtra</p>
+                    <div class="itinerary-details">
+                        <div class="time-location">
+                             <span class="date">13 de Diciembre</span>
+                            <span class="separator">|</span>
+                            <span class="time">18:45 hrs</span>
+                        </div>
+                        <p class="location">Km. 180.5 Carretera a Quetzaltenango, Costa Sur, Retalhuleu</p>
+                        <button class="directions-button" onclick="location.href='https://maps.app.goo.gl/UveM1yqzR9gx1xWx7'">CÓMO LLEGAR</button>
+                    </div>
+                </div>
+            </div>
+            <div class="photo-full fade-in-element fade-in-element">
+                <img src="/images/S1.jpg" alt="Foto de la pareja" loading="lazy">
+            </div>
+            <div class="gifts-section fade-in-element fade-in-element">
+                <h2>Mesa de Regalos</h2>
+                <lord-icon 
+                    src="https://cdn.lordicon.com/ibydboev.json" 
+                    stroke="light" 
+                    colors="primary:#5F6D4B,secondary:#A6B48B" 
+                    class="lord-icon-style">
+                </lord-icon>
+            
+                 <p>El detalle más importante que en este día nos puede obsequiar es tu presencia.<br><br>Sin embargo, si en tu corazón está el deseo de realizarnos un obsequio lo dejamos a tu comodidad, en este nuevo hogar un regalo físico o en efectivo, jamás estará de más...</p>
+            
+                 <div class="gifts-section-button" style="display:none;">
+                    <button onclick="window.open('https://www.cemaco.com/registro-de-regalos/boda?srsltid=AfmBOoqNeGTibH0sKTW4lszY8zwH69AMSo7XTiKk2Y1ahP6XZRkT-C9J', '_blank')">
+                        Boda Cemaco
+                    </button>
+                </div>
+            
+                <!-- ⭐ Nuevo botón: Cuenta Bancaria -->
+                 <div class="gifts-section-button" style="display:none;">
+                    <button onclick="toggleDetails()">
+                        Cuenta bancaria
+                    </button>
+                </div>
+            
+                 <p>¡Muchas gracias!</p>
+            
+                <!-- ⭐ Pop-up / Modal de Cuenta Bancaria -->
+                <div id="accountDetails" 
+                     style="
+                        display:none;
+                        position: fixed;
+                        top: 0; left: 0;
+                        width: 100%; height: 100%;
+                        background: rgba(0,0,0,0.6);
+                        backdrop-filter: blur(3px);
+                        z-index: 9999;
+                        justify-content: center;
+                        align-items: center;
+                     ">
+            
+                    <div style="
+                        background: white;
+                        padding: 25px;
+                        border-radius: 10px;
+                        text-align: center;
+                        max-width: 85%;
+                        margin: auto;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                        font-size: 35px;
+                        line-height: 1.3;
+                    ">
+                        <h1 style="font-size:45px; margin-bottom:20px; color:#5F6D4B; text-transform: capitalize;">Cuenta Bancaria</h1>
+            
+                        <p><strong>BANCO UNIVERSAL</strong></p>
+                         <p>Sandy & Ronald</p>
+                        <p><strong>No. cuenta:</strong>9694090-098</p>
+                        <p>Cuenta Monetaria</p>
+            
+                        <button onclick="toggleDetails()"
+                            style="
+                                margin-top: 25px;
+                                padding: 10px 20px;
+                                font-size: 20px;
+                                border: none;
+                                border-radius: 5px;
+                                background: #8B9C74;
+                                color: white;
+                                cursor: pointer;
+                            ">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="playlist-section fade-in-element fade-in-element" style="display:none;">
+                <h2>Playlist</h2>
+                <lord-icon 
+                 src="https://cdn.lordicon.com/vvlnxtgv.json" 
+                 stroke="light" 
+                 colors="primary:#5F6D4B,secondary:#A6B48B" 
+                 class="lord-icon-style"
+                 ></lord-icon>
+                <p>Nos encantaría que nos sugieras esas canciones que sabes que son geniales y no pueden faltar en nuestra boda.</p>
+                <button onclick="window.open('https://open.spotify.com/playlist/2yXvbZbMEhQBcVGKJjd7Cv?si=f45f0c34cf97467b&pt=fda6954b32a864ebafa00cecb6b57a60', '_blank')">
+                    ABRIR PLAYLIST EN SPOTIFY
+                </button>                              
+            </div>
+            <div class="dresscode-section fade-in-element">
+                <h2>Dress Code</h2>
+                <lord-icon
+                    src="https://cdn.lordicon.com/okgbpdra.json"
+                    stroke="light"
+                    colors="primary:#5F6D4B,secondary:#A6B48B"
+                    class="lord-icon-style"
+                ></lord-icon>
+                 <p>Formal. El color blanco queda exclusivamente reservado para la novia.</p>
+                
+                <div class="dresscode-buttons">
+                    <button onclick="window.open('https://www.pinterest.com/search/pins/?q=vestimenta%20formal%20para%20damas&rs=typed', '_blank')">
+                        Ideas para Damas
+                    </button>
+                    <button onclick="window.open('https://www.pinterest.com/search/pins/?q=vestimenta%20formal%20para%20caballeros&rs=typed', '_blank')">
+                        Ideas para Caballeros
+                    </button>
+                </div>
+            </div>  
+            <div class="photo-full fade-in-element fade-in-element">
+                <img src="/images/S2.jpg" alt="Foto de la pareja" loading="lazy">
+            </div>           
+            <div class="gallery-section fade-in-element fade-in-element" style="display:none;">
+                <h2>Galería de fotos</h2>
+            
+                <!-- Checkbox oculto que controla la visibilidad del modal -->
+              <input type="checkbox" id="toggle-modal" class="hidden-checkbox">
+            
+                <!-- Modal de fotos -->
+               <div id="photo-modal" class="modal">
+                   <Label para cerrar el modal 
+                   label for="toggle-modal" class="close">&times;</label>
+                    <img class="modal-content" id="main-photo-modal" alt="modal">
+                </div>
+            
+                <!-- Galería principal -->
+                <div class="gallery-main fade-in-element">
+                    <!-- Al hacer clic en la imagen principal, se abre el modal -->
+                   <label for="toggle-modal">
+                        <img id="main-photo" src="/images/G1.jpg" alt="Foto principal" onclick="changePhoto(this)" loading="lazy">
+                    </label>
+                </div>
+            
+                <!-- Miniaturas de la galería -->
+              <div class="gallery-thumbs fade-in-element">
+                    <!-- Cada miniatura también actúa como disparador del modal -->
+                  <label for="toggle-modal">
+                        <img src="images/G1.jpg" alt="Foto 1"  onclick="changePhoto(this)" loading="lazy">
+                    </label>
+                    <label for="toggle-modal">
+                        <img src="/images/G2.jpg" alt="Foto 2" onclick="changePhoto(this)" loading="lazy">
+                    </label>
+                    <label for="toggle-modal">
+                        <img src="/images/G3.jpg" alt="Foto 3" onclick="changePhoto(this)" loading="lazy">
+                    </label>
+                    <label for="toggle-modal">
+                        <img src="/images/G4.jpg" alt="Foto 4" onclick="changePhoto(this)" loading="lazy">
+                    </label>
+                    <label for="toggle-modal">
+                        <img src="/images/G5.jpg" alt="Foto 5" onclick="changePhoto(this)" loading="lazy">
+                    </label>
+                    <label for="toggle-modal">
+                        <img src="/images/G6.jpg" alt="Foto 6" onclick="changePhoto(this)" loading="lazy">
+                    </label>
+                </div>
+            </div>
+             <div class="wishes-section fade-in-element fade-in-element" style="display:none;">
+                <h2>Buenos deseos</h2>
+                <button  type="button" onclick="toggleWishes()">VER BUENOS DESEOS</button>
+                <div id="wishes" class="hidden">
+                    <!-- Aquí se mostrarán los buenos deseos -->
+                </div>
+                <button type="button" onclick="toggleWishForm()">ENVIAR BUENOS DESEOS</button>
+                <div id="wish-form" class="hidden">
+                    <label for="wish-name">Nombre:</label>
+                    <input type="text" id="wish-name">
+                    <label for="wish-message">Mensaje:</label>
+                    <textarea id="wish-message"></textarea>
+                    <button onclick="submitWish()">Enviar</button>
+                </div>
+            </div>
+             <div class="album-section fade-in-element" style="display:none;">
+                <h2>¡Hagamos los recuerdos inolvidables!</h2>
+                <h1 class="hashtag">#noscasamosantonio&silvia</h1>
+                <div class="qr-container">
+                    <div id="qrCode"></div>
+                    <img src="/images/QR-2026.svg" alt="Escane el QR" width="400">
+                    <p>Escanea el código QR o usa el botón para subir tus fotos</p>
+                    <a class="upload-btn" href="https://drive.google.com/drive/folders/1Fp0t_SmKJ9N1mRKHUNQrJTGZoTwYt6FV?usp=drive_link" target="_blank">SUBIR FOTOS</a>
+                </div>
+            </div>
+             <div class="rsvp-section fade-in-element fade-in-element">
+                <h2>Confirmación</h2>
+                <lord-icon 
+                 src="https://cdn.lordicon.com/wzwygmng.json" 
+                 stroke="light"  
+                 colors="primary:#5F6D4B,secondary:#A6B48B" 
+                 class="lord-icon-style"
+                 ></lord-icon>
+                <p>Para nosotros es muy importante que confirmes tu asistencia lo antes posible, o bien que nos indiques que no podrás acompañarnos.</p>
+                <button type="button" onclick="confirmarWhatsApp()">CONFIRMA TU ASISTENCIA</button>
+            </div>
+            <div class="photo-full fade-in-element fade-in-element">
+                <img src="/images/S3.jpg" alt="Foto de la pareja" loading="lazy">
+            </div>
+             <div class="banner-section fade-in-element fade-in-element1">
+                 <p>“Bajo la bendición de Dios y unidos por su amor, comenzamos nuestra historia, confiando en que Él guiará nuestros pasos y será siempre el fundamento de nuestro hogar.”<br><br>«Y sobre todas estas cosas vestíos de amor, que es el vínculo perfecto». — Colosenses 3:14</p>
+            </div>
+            <footer class="fade-in-element fade-in-element">
+                <div class="social-icons">
+                    <a href="https://wa.me/50236011737" aria-label="Whatsapp"><i class="fab fa-whatsapp fade-in-element"></i></a>
+                    <a href="https://www.facebook.com/thetwodesign?mibextid=ZbWKwl" aria-label="Facebook"><i class="fab fa-facebook fade-in-element"></i></a>
+                    <a href="https://www.instagram.com/thetwodesign?igsh=M2k5eWF4dHl3czNv" aria-label="Instagram"><i class="fab fa-instagram fade-in-element"></i></a>
+                </div>
+                <div class="logo fade-in-element">
+                    <img src="/images/2.png" alt="Logo de la empresa">
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
+    <script type="module" src="/database.js" defer></script>
+    <script src="/script.js" defer></script>
+    <script type="module" src="/loads.js" defer></script>
+</body>
+</html>
