@@ -180,6 +180,27 @@ document.addEventListener("DOMContentLoaded", function() {
         details.style.display = (details.style.display === "none" || details.style.display === "") ? "block" : "none";
     }
 
+    let rsvpAnswer = null;
+    const rsvpYesButton = document.getElementById("btnRsvpSi");
+    const rsvpNoButton = document.getElementById("btnRsvpNo");
+    const rsvpConfirmButton = document.getElementById("btnConfirmarRsvp");
+
+    function selectRsvpAnswer(answer) {
+        rsvpAnswer = answer;
+        rsvpYesButton.classList.toggle("selected", answer === "si");
+        rsvpNoButton.classList.toggle("selected", answer === "no");
+    }
+
+    rsvpYesButton.addEventListener("click", () => selectRsvpAnswer("si"));
+    rsvpNoButton.addEventListener("click", () => selectRsvpAnswer("no"));
+    rsvpConfirmButton.addEventListener("click", () => {
+        if (!rsvpAnswer) {
+            alert("Por favor, selecciona si asistirás o no.");
+            return;
+        }
+        confirmarWhatsApp(rsvpAnswer);
+    });
+
     window.submitWish = submitWish;
     window.toggleWishForm = toggleWishForm;
     window.toggleWishes = toggleWishes;
@@ -191,7 +212,7 @@ window.toggleDetails = function() {
         : "none";
 }
 
-window.confirmarWhatsApp = function () {
+window.confirmarWhatsApp = function (respuesta = "si") {
     const phone = "50236011737";
   
     const guest = window.currentGuest;
@@ -201,7 +222,9 @@ window.confirmarWhatsApp = function () {
   
     const verbo = pases === 1 ? "soy" : "somos";
   
-     const texto = `Hola, ${verbo} ${nombre} y confirmo la asistencia a la boda de Sandy & Ronald. Somos ${pases} ${pases === 1 ? "persona" : "personas"}.`;
+    const texto = respuesta === "si"
+        ? `Hola, ${verbo} ${nombre} y confirmo la asistencia a la boda de Sandy & Ronald. Somos ${pases} ${pases === 1 ? "persona" : "personas"}.`
+        : `Hola, ${verbo} ${nombre}. Lamentablemente no podremos asistir a la boda de Sandy & Ronald.`;
   
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(texto)}`;
     window.location.href = url;

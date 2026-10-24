@@ -41,8 +41,166 @@ body {
     background-color: var(--blue-pale) !important;
 }
 
-.invitation-info-section p, .guest-section p {
-    background: linear-gradient(to right, var(--navy-light), var(--navy), var(--navy-dark), var(--navy), var(--navy-light)) !important;
+.guest-section {
+    background-color: var(--navy) !important;
+}
+
+.guest-section p {
+    color: #0B1F3A !important;
+}
+
+.invitation-info-section p {
+    color: #0B1F3A !important;
+}
+
+.photo-text h1, .photo-text h2 {
+    background: linear-gradient(120deg, #ffffff 0%, #e7e4df 45%, #ffffff 70%, #cfcac2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.title {
+    background: linear-gradient(120deg, #ffffff 0%, #e7e4df 45%, #ffffff 70%, #cfcac2 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.rsvp-section .lord-icon-style {
+    display: block;
+    margin: 0 auto 12px;
+}
+
+.rsvp-intro {
+    max-width: 700px;
+    margin: 0 auto 24px;
+}
+
+#rsvp-name {
+    display: block;
+    width: min(520px, 85%);
+    margin: 0 auto 24px;
+    padding: 14px 18px;
+    border: 1px solid #9db2c9;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #0B1F3A;
+    font: inherit;
+    font-size: 22px;
+    text-align: center;
+}
+
+.rsvp-choice-label {
+    margin-bottom: 14px !important;
+    color: #0B1F3A !important;
+}
+
+.rsvp-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.rsvp-actions .rsvp-btn {
+    width: min(360px, 85vw);
+    min-height: 58px;
+    margin: 0;
+    padding: 14px 18px;
+    background: #ffffff !important;
+    border: 1px solid #0B1F3A;
+    border-radius: 8px;
+    color: #0B1F3A !important;
+    font: inherit;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.rsvp-actions .rsvp-btn.selected,
+.rsvp-actions .rsvp-btn:hover {
+    background: #0B1F3A !important;
+    color: #ffffff !important;
+}
+
+#rsvp-name:hover, #rsvp-name:focus {
+    background: #0B1F3A;
+    color: #ffffff;
+    outline: none;
+}
+
+#btnConfirmarRsvp {
+    width: min(360px, 85vw);
+    min-height: 58px;
+    padding: 14px 18px;
+    background: #0B1F3A !important;
+    border: 1px solid #0B1F3A;
+    border-radius: 8px;
+    color: #ffffff !important;
+    font: inherit;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#btnConfirmarRsvp:hover {
+    background: #102A4C !important;
+    color: #ffffff !important;
+}
+
+.rsvp-section button {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.contenedor-play {
+    position: fixed !important;
+    top: 22px !important;
+    right: 22px !important;
+    z-index: 1000 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    width: 58px !important;
+    height: 58px !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+    border: 1px solid rgba(11, 31, 58, 0.75);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.28) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 14px rgba(7, 20, 38, 0.12);
+}
+
+.contenedor-play .texto-play,
+.contenedor-play .progress-container {
+    display: none;
+}
+
+.contenedor-play .icono-contenedor {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    color: #0B1F3A !important;
+    cursor: pointer;
+}
+
+.contenedor-play .icono-contenedor i {
+    color: #0B1F3A !important;
+    font-size: 24px;
+}
+
+@media (max-width: 600px) {
+    .contenedor-play {
+        top: 16px;
+        right: 16px;
+        width: 52px;
+        height: 52px;
+    }
 }
 
 .child-section {
@@ -92,7 +250,7 @@ html, body {
   } 
   
   p{
-    color: #8B9C74;
+    color: #0B1F3A;
 }
 .main-content {
     max-width: 1800px; /* Ancho máximo para pantallas grandes */
@@ -287,11 +445,13 @@ html, body {
     text-align: center;
     padding: 15px 0 15px;
 }
-.invitation-info-section p , .guest-section p{
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #A6B48B, #8B9C74, #5F6D4B, #8B9C74, #A6B48B); 
-    -webkit-background-clip: text;
-    color: transparent;
+.invitation-info-section p {
+    color: #0B1F3A;
+    font-size: 55px;
+}
+
+.guest-section p {
+    color: #ffffff !important;
     font-size: 55px;
 }
 .dresscode-section, .wishes-section, .gallery-section, .playlist-section, .rsvp-section, .nochild-section{
@@ -305,7 +465,7 @@ html, body {
     margin-bottom: 50px;
     text-transform: initial;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #A6B48B, #8B9C74, #5F6D4B, #8B9C74, #A6B48B); 
+    background: linear-gradient(to right, #9DB2C9, #0B1F3A, #071426, #0B1F3A, #9DB2C9); 
     -webkit-background-clip: text;
     color: transparent;
     padding: 10px;
@@ -331,7 +491,7 @@ html, body {
 }
 .contenedor-play .fa-play, .contenedor-play .fa-pause, .contenedor-play h1, .contenedor-play h2 .album-section h1, .album-section h2, .gifts-section h2, .album-section h1{
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #A6B48B, #8B9C74, #5F6D4B, #8B9C74, #A6B48B); 
+    background: linear-gradient(to right, #9DB2C9, #0B1F3A, #071426, #0B1F3A, #9DB2C9); 
     -webkit-background-clip: text;
     color: transparent;
 }
@@ -371,7 +531,7 @@ html, body {
 .time-display {
     font-size: 65px;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to right, #A6B48B, #8B9C74, #5F6D4B, #8B9C74, #A6B48B); 
+    background: linear-gradient(to right, #9DB2C9, #0B1F3A, #071426, #0B1F3A, #9DB2C9); 
     -webkit-background-clip: text;
     color: transparent;
 }
@@ -398,20 +558,20 @@ html, body {
 }
 .time-location .date {
     font-size: 80px;
-    color: #8B9C74;
+    color: #0B1F3A;
 }
 .time-location .separator {
     margin: 0 10px;
     font-size: 80px;
-    color: #8B9C74;
+    color: #0B1F3A;
 }
 .time-location .time {
     font-size: 80px;
-    color: #8B9C74;
+    color: #0B1F3A;
 }
 .location {
     font-size: 80px;
-    color: #8B9C74;
+    color: #0B1F3A;
     margin: 10px 0;
 }
 .gifts-section h2, .gallery-section h2{
@@ -421,7 +581,7 @@ html, body {
 }
 .gifts-section p{
     font-size: 80px;
-    color: #8B9C74;
+    color: #0B1F3A;
     margin: 10px;
     cursor: pointer;
 }
@@ -444,10 +604,10 @@ html, body {
 .dresscode-section p, .playlist-section p, .rsvp-section p, .nochild-section p{
     margin: 10px 0;
     font-size: 80px;
-    color: #8B9C74;
+    color: #0B1F3A;
 }
 .gifts-section, .gallery-section{
-    background-color: #f4fae9a8;
+    background-color: #9db2c93d;
     text-align: center;
     padding: 10px 0 30px;
     margin-top: 5px;
@@ -647,7 +807,7 @@ html, body {
     position: absolute;
     top: 50px;
     right: 20px;
-    color: #8B9C74;
+    color: #0B1F3A;
     font-size: 85px;
     cursor: pointer;
 }
@@ -660,7 +820,7 @@ html, body {
     display: block;
 }
 .banner-section {
-    background-color: #f4fae9a8;
+    background-color: #b8c7d963;
     text-align: center;
     padding: 10px 0;
     font-size: 64px;
@@ -668,7 +828,7 @@ html, body {
     margin-top: 5px;
 }
 footer {
-    background-color: #5F6D4B;
+    background-color: #0b1f3a;
     color: white;
     text-align: center;
     padding: 10px 0;
@@ -1006,7 +1166,7 @@ footer .logo img {
         font-size: 35px;
     }
     .banner-section {
-        font-size: 55px;
+        font-size: 22px;
     }
     footer .social-icons i{
         font-size: 55px;

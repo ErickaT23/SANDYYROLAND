@@ -41,9 +41,11 @@ const guests = [
   
       const guestNameEl = document.getElementById("guest-name");
       const passesEl = document.getElementById("passes");
-  
+      const rsvpNameEl = document.getElementById("rsvp-name");
+
       if (guestNameEl) guestNameEl.textContent = invitText;
       if (passesEl) passesEl.textContent = `${guest.passes} ${guest.passes === 1 ? "pase" : "pases"}`;
+      if (rsvpNameEl) rsvpNameEl.value = guest.name;
     } else {
       window.currentGuest = null;
   
