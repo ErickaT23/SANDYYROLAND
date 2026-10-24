@@ -280,6 +280,14 @@ body {
     background: #f7f8fa;
 }
 
+.lord-icon-style {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
 .child-section img {
     display: block;
     width: min(280px, 75vw);
@@ -1073,7 +1081,7 @@ footer .logo img {
         font-size: 16px;
     }
     .time-location .date, .time-location .time{
-        font-size: 24px;
+        font-size: 20px;
         margin: 8px;
         font-style: normal;
     }
