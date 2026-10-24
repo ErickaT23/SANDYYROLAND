@@ -274,6 +274,13 @@ body {
     }
 }
 
+@media (max-width: 768px) {
+    .lord-icon-style {
+        width: 150px !important;
+        height: 150px !important;
+    }
+}
+
 .child-section {
     padding: 50px 24px;
     text-align: center;
