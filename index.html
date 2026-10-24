@@ -47,19 +47,6 @@
                   <h2>13 . 12 . 2026</h2>
                </div>
           </div> 
-        <div class="contenedor-play">
-            <h1 class="texto-play fade-in-element fade-in-element">Hasta mi final - Il Divo</h1>
-            <div id="playPauseButton" class="icono-contenedor fade-in-element fade-in-element">
-                <i id="iconoPlayPause" class="fas fa-play" aria-hidden="true"></i>
-            </div>
-            <audio id="audioPlayer" src="/music/hastamifinal.mp3" loop></audio>
-            <div class="progress-container">
-                <input id="progress-bar" type="range" value="0" min="0" max="100" step="1">
-                <div class="time-display">
-                    <span id="current-time">0:00</span> / <span id="duration-time">0:00</span>
-                </div>
-            </div>            
-        </div>               
          <div class="content">
             <div class="photo-section fade-in-element fade-in-element">
                 <div class="photo-container">
@@ -119,7 +106,7 @@
                               <span class="time">5:00 pm</span>
                          </div>
                            <p class="location">Huehuetenango, Guatemala</p>
-                           <button type="button"  class="directions-button" onclick="location.href='https://maps.app.goo.gl/dBsPpqnLm6ifjyce9'">CÓMO LLEGAR</button>
+                           <button type="button"  class="directions-button" onclick="location.href='https://maps.app.goo.gl/dBsPpqnLm6ifjyce9'">Cómo llegar</button>
                       </div>
                    </div> 
 
@@ -139,7 +126,7 @@
                             <span class="time">18:45 hrs</span>
                         </div>
                         <p class="location">Km. 180.5 Carretera a Quetzaltenango, Costa Sur, Retalhuleu</p>
-                        <button class="directions-button" onclick="location.href='https://maps.app.goo.gl/UveM1yqzR9gx1xWx7'">CÓMO LLEGAR</button>
+                         <button class="directions-button" onclick="location.href='https://maps.app.goo.gl/UveM1yqzR9gx1xWx7'">Cómo llegar</button>
                     </div>
                 </div>
             </div>
@@ -366,6 +353,10 @@
         </div>
     </div>
 </div>
+    <button id="audio-bubble" class="music-bubble hidden" type="button" aria-label="Reproducir o pausar música">
+        <i id="iconoPlayPause" class="fas fa-play" aria-hidden="true"></i>
+    </button>
+    <audio id="audioPlayer" src="/music/hastamifinal.mp3" loop></audio>
     <script type="module" src="/database.js" defer></script>
     <script src="/script.js" defer></script>
     <script type="module" src="/loads.js" defer></script>

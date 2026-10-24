@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     var audio = document.getElementById("audioPlayer");
-    var playPauseButton = document.getElementById("playPauseButton");
     var iconoPlayPause = document.getElementById("iconoPlayPause");
+    var audioBubble = document.getElementById("audio-bubble");
+    var playPauseButton = audioBubble;
     var progressBar = document.getElementById("progress-bar");
     var currentTimeDisplay = document.getElementById("current-time");
     var durationTimeDisplay = document.getElementById("duration-time");
@@ -15,25 +16,28 @@ document.addEventListener("DOMContentLoaded", function() {
     function openEnvelopeAndPlayMusic() {
         var envelopeTop = document.getElementById("envelope-top");
         var envelopeBottom = document.getElementById("envelope-bottom");
-        var envelope = document.getElementById("envelope");
-        var invitation = document.getElementById("invitation");
+         var envelope = document.getElementById("envelope");
+         var invitation = document.getElementById("invitation");
       
         envelopeTop.style.transform = 'translateY(-100vh)';
         envelopeBottom.style.transform = 'translateY(100vh)';
       
-        setTimeout(function() {
-            envelope.classList.add('hidden');
-            invitation.classList.remove('hidden');
-        }, 1000);
+         setTimeout(function() {
+             envelope.classList.add('hidden');
+             invitation.classList.remove('hidden');
+             audioBubble.classList.remove('hidden');
+         }, 1000);
       
         audio.play().then(function() {
-            iconoPlayPause.classList.remove("fa-play");
-            iconoPlayPause.classList.add("fa-pause");
+             iconoPlayPause.classList.remove("fa-play");
+             iconoPlayPause.classList.add("fa-pause");
+             audioBubble.classList.add("is-playing");
             updateProgress(); 
         }).catch(function(error) {
             console.log('Playback failed: ', error);
-            iconoPlayPause.classList.add("fa-play");
-            iconoPlayPause.classList.remove("fa-pause");
+             iconoPlayPause.classList.add("fa-play");
+             iconoPlayPause.classList.remove("fa-pause");
+             audioBubble.classList.remove("is-playing");
         });
       }
       
@@ -58,9 +62,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         setTimeout(() => {
             if (audio.paused) {
-                audio.play().catch(console.error);
+                audio.play().then(() => audioBubble.classList.add("is-playing")).catch(console.error);
             } else {
                 audio.pause();
+                audioBubble.classList.remove("is-playing");
             }
         }, 50);
     }
@@ -68,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function updateProgress() {
         audio.addEventListener("timeupdate", function() {
             var progress = (audio.currentTime / audio.duration) * 100;
-            progressBar.value = progress;
+            if (progressBar) progressBar.value = progress;
 
             var currentMinutes = Math.floor(audio.currentTime / 60);
             var currentSeconds = Math.floor(audio.currentTime % 60);
@@ -82,10 +87,12 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    progressBar.addEventListener("input", function() {
-        var newTime = (progressBar.value / 100) * audio.duration;
-        audio.currentTime = newTime;
-    });
+    if (progressBar) {
+        progressBar.addEventListener("input", function() {
+            var newTime = (progressBar.value / 100) * audio.duration;
+            audio.currentTime = newTime;
+        });
+    }
 
     playPauseButton.addEventListener("click", function() {
         togglePlayPause();

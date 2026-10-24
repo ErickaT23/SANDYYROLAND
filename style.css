@@ -37,6 +37,26 @@ body {
     background-color: var(--navy-light) !important;
 }
 
+.directions-button,
+.gifts-section button,
+.dresscode-section button,
+.rsvp-section button,
+.wishes-section button,
+.playlist-section button,
+.filter-section button,
+.rsvp-btn,
+.btn-calendar {
+    width: min(360px, 85vw);
+    background: #0B1F3A !important;
+    border: 1px solid #0B1F3A !important;
+    border-radius: 8px;
+    color: #ffffff !important;
+    font: inherit;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    cursor: pointer;
+}
+
 .invitation-info-section {
     background-color: var(--blue-pale) !important;
 }
@@ -134,8 +154,6 @@ body {
 
 #btnConfirmarRsvp {
     width: min(360px, 85vw);
-    min-height: 58px;
-    padding: 14px 18px;
     background: #0B1F3A !important;
     border: 1px solid #0B1F3A;
     border-radius: 8px;
@@ -156,19 +174,23 @@ body {
 
 .contenedor-play {
     position: fixed !important;
-    top: 22px !important;
+    top: auto !important;
     right: 22px !important;
+    bottom: 22px !important;
     z-index: 1000 !important;
     display: flex !important;
     flex-direction: row !important;
     width: 58px !important;
     height: 58px !important;
+    opacity: 1 !important;
+    transform: none !important;
     align-items: center;
     justify-content: center;
     padding: 0 !important;
     border: 1px solid rgba(11, 31, 58, 0.75);
-    border-radius: 50%;
+    border-radius: 50% !important;
     background: rgba(255, 255, 255, 0.28) !important;
+    background-image: none !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 4px 14px rgba(7, 20, 38, 0.12);
@@ -186,6 +208,8 @@ body {
     align-items: center;
     justify-content: center;
     color: #0B1F3A !important;
+    opacity: 1 !important;
+    transform: none !important;
     cursor: pointer;
 }
 
@@ -194,10 +218,57 @@ body {
     font-size: 24px;
 }
 
+.music-bubble {
+    position: fixed;
+    right: 18px;
+    bottom: 20px;
+    z-index: 10000;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(11, 31, 58, 0.75);
+    border-radius: 999px;
+    background: rgba(247, 244, 239, 0.26);
+    color: #0B1F3A !important;
+    box-shadow: 0 10px 24px rgba(7, 20, 38, 0.08);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    cursor: pointer;
+    display: grid !important;
+    place-items: center;
+    padding: 0 !important;
+    font-size: 15px;
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.music-bubble i {
+    color: #0B1F3A !important;
+}
+
+.music-bubble.is-playing {
+    animation: musicParallax 3.2s ease-in-out infinite;
+}
+
+@keyframes musicParallax {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@media (max-width: 768px) {
+    .music-bubble {
+        right: 14px;
+        bottom: 16px;
+        width: 46px;
+        height: 46px;
+        font-size: 14px;
+    }
+}
+
 @media (max-width: 600px) {
     .contenedor-play {
-        top: 16px;
+        top: auto !important;
         right: 16px;
+        bottom: 16px !important;
         width: 52px;
         height: 52px;
     }
@@ -494,6 +565,8 @@ html, body {
     background: linear-gradient(to right, #9DB2C9, #0B1F3A, #071426, #0B1F3A, #9DB2C9); 
     -webkit-background-clip: text;
     color: transparent;
+    opacity: 1 !important;
+    transform: none !important;
 }
 .contenedor-play .fa-play{
     font-size: 35px;
@@ -683,7 +756,7 @@ html, body {
     transition: background-color 0.3s, box-shadow 0.3s;  
     font-weight: 200;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra alrededor de la imagen */
-    text-transform: uppercase;
+    text-transform: none;
 }
 .dresscode-buttons button:hover {
     background-color: #8B9C74;
@@ -708,7 +781,7 @@ html, body {
     transition: background-color 0.3s, box-shadow 0.3s;  
     font-weight: 200;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Sombra alrededor de la imagen */
-    text-transform: uppercase;
+    text-transform: none;
 }
 .gifts-section-button button:hover {
     background-color: #687754;
