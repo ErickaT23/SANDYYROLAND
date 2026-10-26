@@ -61,5 +61,31 @@ window.localGuests = guests;
       const section = document.querySelector(".invitation-info-section");
       if (section) section.style.display = "none";
     }
+
+    const remoteGuestNameEl = document.getElementById("guest-name");
+    const remotePassesEl = document.getElementById("passes");
+    const remoteRsvpNameEl = document.getElementById("rsvp-name");
+
+    function applyRemoteGuest(remoteGuest) {
+      if (!remoteGuest || String(remoteGuest.id) !== String(guestId)) return;
+      window.currentGuest = { id: String(remoteGuest.id), name: remoteGuest.nombre, passes: Number(remoteGuest.pases) || 1, gender: remoteGuest.gender || "mixto" };
+      if (remoteGuestNameEl) remoteGuestNameEl.textContent = window.currentGuest.passes === 1
+        ? `¡${window.currentGuest.name}, está invitado!`
+        : `¡${window.currentGuest.name}, están invitados!`;
+      if (remotePassesEl) remotePassesEl.textContent = `${window.currentGuest.passes} ${window.currentGuest.passes === 1 ? "pase" : "pases"}`;
+      if (remoteRsvpNameEl) remoteRsvpNameEl.value = window.currentGuest.name;
+    }
+
+    const subscribeRemote = () => {
+      if (window.RSVPDatabase?.subscribeToInvitados) {
+        window.RSVPDatabase.subscribeToInvitados((items) => {
+          const remoteGuest = items.find((item) => String(item.id) === String(guestId) && item.activo !== false);
+          if (remoteGuest) applyRemoteGuest(remoteGuest);
+        });
+        return;
+      }
+      setTimeout(subscribeRemote, 100);
+    };
+    subscribeRemote();
   });
   

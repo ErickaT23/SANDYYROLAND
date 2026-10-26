@@ -18,7 +18,15 @@
     })));
   }
   function render() {
-    rows.innerHTML = guests.map((guest) => `<tr><td>${guest.id}</td><td>${guest.nombre}</td><td>${guest.pases}</td><td>${guest.activo === false ? "No" : "Sí"}</td><td><button data-toggle="${guest.id}">${guest.activo === false ? "Activar" : "Desactivar"}</button></td></tr>`).join("");
+    rows.innerHTML = guests.map((guest) => `<tr><td>${guest.id}</td><td>${guest.nombre}</td><td>${guest.pases}</td><td>${guest.activo === false ? "No" : "Sí"}</td><td><button data-edit="${guest.id}">Editar</button> <button data-toggle="${guest.id}">${guest.activo === false ? "Activar" : "Desactivar"}</button></td></tr>`).join("");
+    rows.querySelectorAll("[data-edit]").forEach((button) => button.addEventListener("click", async () => {
+      const guest = guests.find((item) => String(item.id) === button.dataset.edit);
+      const nombre = prompt("Nombre del invitado", guest.nombre);
+      const pases = prompt("Cantidad de pases", guest.pases);
+      if (!nombre || !pases) return;
+      await window.RSVPDatabase.updateInvitado(guest.id, { ...guest, nombre, pases: Math.max(1, Number(pases)) });
+      setStatus("Invitado modificado.");
+    }));
     rows.querySelectorAll("[data-toggle]").forEach((button) => button.addEventListener("click", async () => {
       const guest = guests.find((item) => String(item.id) === button.dataset.toggle);
       await window.RSVPDatabase.updateInvitado(guest.id, { ...guest, activo: guest.activo === false });
