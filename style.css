@@ -924,6 +924,14 @@ html, body {
     margin-bottom: -10px;
     padding: 0;
 }
+.wide-photo {
+    overflow: hidden;
+}
+.wide-photo img {
+    width: 110%;
+    max-width: none;
+    margin-left: -5%;
+}
 /* Ocultamos el checkbox de control */
 .hidden-checkbox {
     display: none;
