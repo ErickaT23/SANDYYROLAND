@@ -6,6 +6,8 @@ const guests = [
     { id: "5", name: "Fam. Barrios", passes: 4, gender: "mixto" },
   ];  
 
+window.localGuests = guests;
+
   document.addEventListener("DOMContentLoaded", function () {
     function getQueryParams() {
       const params = {};
