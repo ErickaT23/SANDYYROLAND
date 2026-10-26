@@ -1,5 +1,6 @@
 (() => {
   document.getElementById("dashboard-app").hidden = false;
+  document.getElementById("restricted").hidden = true;
   let guests = [], confirmations = [];
   const date = (value) => value ? new Date(value).toLocaleString("es-GT") : "--";
   function render() {

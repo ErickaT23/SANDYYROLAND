@@ -5,6 +5,7 @@
   const status = document.getElementById("admin-status");
   if (!authorized) return;
   app.hidden = false;
+  document.getElementById("restricted").hidden = true;
   const rows = document.getElementById("guest-rows");
   let guests = [];
   const setStatus = (text) => { status.textContent = text; };
