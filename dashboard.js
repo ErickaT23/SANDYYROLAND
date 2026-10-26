@@ -1,6 +1,4 @@
 (() => {
-  const authorized = new URLSearchParams(location.search).get("key") === window.rsvpConfig?.adminKey;
-  if (!authorized) return;
   document.getElementById("dashboard-app").hidden = false;
   let guests = [], confirmations = [];
   const date = (value) => value ? new Date(value).toLocaleString("es-GT") : "--";
