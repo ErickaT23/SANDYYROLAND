@@ -329,7 +329,7 @@ body {
 .child-section {
     padding: 50px 24px;
     text-align: center;
-    background: #f7f8fa;
+    background: #071426;
 }
 
 .lord-icon-style {
@@ -360,7 +360,10 @@ body {
 .child-section p {
     max-width: 650px;
     margin: 0 auto;
-    color: var(--navy);
+    background: linear-gradient(120deg, #0B1F3A 0%, #52789D 45%, #9DB2C9 70%, #294B70 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     font-size: 22px;
     line-height: 1.45;
 }
@@ -810,10 +813,19 @@ html, body {
     color: #0B1F3A;
 }
 .gifts-section, .gallery-section{
-    background-color: #9db2c93d;
+    background-color: #ffffff;
     text-align: center;
     padding: 10px 0 30px;
     margin-top: 5px;
+}
+.gifts-section {
+    background-color: #071426;
+}
+.gifts-section p {
+    background: linear-gradient(120deg, #0B1F3A 0%, #52789D 45%, #9DB2C9 70%, #294B70 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
 }
 .dresscode-section .icons {
     display: flex;
@@ -1036,12 +1048,18 @@ html, body {
     display: block;
 }
 .banner-section {
-    background-color: #b8c7d963;
+    background-color: #071426;
     text-align: center;
     padding: 10px 0;
     font-size: 64px;
-    color: white;
+    color: #9DB2C9;
     margin-top: 5px;
+}
+.banner-section p {
+    background-image: linear-gradient(120deg, #52789D 0%, #9DB2C9 45%, #D7E3EF 70%, #52789D 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
 }
 footer {
     background-color: #0b1f3a;
@@ -1271,7 +1289,7 @@ footer .logo img {
         font-size: 20px;
     }
     .banner-section{
-        font-size: 28px;
+        font-size: 26px;
         padding: 5px;
     }
     .details img{
