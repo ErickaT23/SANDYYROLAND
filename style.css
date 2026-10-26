@@ -82,7 +82,7 @@ body {
 }
 
 .title {
-    background: linear-gradient(120deg, #ffffff 0%, #e7e4df 45%, #ffffff 70%, #cfcac2 100%);
+    background: linear-gradient(120deg, #0B1F3A 0%, #52789D 45%, #9DB2C9 70%, #294B70 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent !important;
@@ -410,7 +410,7 @@ html, body {
     margin: 0;
     font-size: 48px;
     font-family: Garamond, serif;
-    background: linear-gradient(to right, #b29a68, #d4af37, #ffd700, #d4af37, #b29a68);
+    background: linear-gradient(to right, #0B1F3A, #52789D, #9DB2C9, #52789D, #0B1F3A);
     -webkit-background-clip: text;
     color: transparent;
     animation: shine 1.5s infinite linear;
@@ -425,10 +425,13 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Asegura que la sección ocupe toda la altura de la pantalla */
+    height: 70vh;
     text-align: center;
     box-sizing: border-box;
     overflow: hidden; /* Evita que el contenido se desborde */
+}
+.cover-photo {
+    height: 100vh;
 }
 /* Contenedor de la imagen */
 .photo-container {
@@ -469,6 +472,33 @@ html, body {
     color: white;
     text-shadow: 0 0 10px rgba(32, 32, 32, 0.857);
     
+}
+.no-background {
+    background-color: white;
+}
+.no-background .photo-text {
+    position: static;
+    margin-top: 0;
+}
+.no-background .photo-text h3,
+.no-background .photo-text p {
+    color: #0B1F3A;
+}
+.no-background .photo-text h3 {
+    margin-top: 0;
+}
+.no-background .photo-text p {
+    text-shadow: none;
+}
+.no-background .number,
+.no-background .label {
+    color: #0B1F3A;
+}
+.no-background .btn-calendar {
+    background: transparent !important;
+    color: #0B1F3A !important;
+    border: none !important;
+    box-shadow: 0 3px 10px rgba(11, 31, 58, 0.25);
 }
 /* Estilo para la cuenta regresiva */
 .title h1{
@@ -629,11 +659,41 @@ html, body {
     margin: 0;
     text-align: center;
 }
+.blessing-section {
+    background-color: white;
+    padding: 40px 20px;
+    text-align: center;
+    color: #0B1F3A;
+}
+.blessing-section p {
+    margin: 16px 0 30px;
+    font-size: 20px;
+}
+.blessing-section h3 {
+    margin: 28px 0 8px;
+    font-size: 30px;
+    font-weight: 600;
+    text-transform: none;
+    background: linear-gradient(120deg, #0B1F3A 0%, #52789D 45%, #9DB2C9 70%, #294B70 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.blessing-section .title {
+    font-size: 30px;
+    text-transform: none;
+}
 .itinerary-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 30px;
+}
+.itinerary-item h2 {
+    background: linear-gradient(120deg, #0B1F3A 0%, #52789D 45%, #9DB2C9 70%, #294B70 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
 }
 .itinerary-details {
     text-align: center;
@@ -719,7 +779,7 @@ html, body {
     border-radius: 100%;
     margin: 0;
     padding: 5px 10px;
-    background-color: #e8d5b466;
+    background-color: #9db2c999;
     border: solid 1px white;
     text-align: center;
     display: flex;
@@ -729,13 +789,11 @@ html, body {
 .number {
     font-size: 90px;
     color: white;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     text-align: center;
 }
 .label {
     font-size: 74px;
     color: white;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     text-align: center;
 }
 .directions-button, .wishes-section button, .rsvp-section button, .playlist-section button, .filter-section button, .gifts-section button{  
@@ -1034,7 +1092,7 @@ footer .logo img {
         font-size: 35px;
     }
     .photo-text p {
-        font-size: 25px;
+        font-size: 20px;
         padding: 10px;
         margin-top: -30px;
     }
@@ -1100,10 +1158,13 @@ footer .logo img {
         font-size: 30px;
     }
     .unit {
-        width: 75px;
-        height: 75px;
+        width: 85px;
+        height: 85px;
         padding: 15px 10px 1px 10px;
         border-radius: 100px;
+    }
+    .blessing-section {
+        padding: 10px 20px;
     }
     .number {
         font-size: 20px;
@@ -1150,7 +1211,10 @@ footer .logo img {
 }
 @media (min-width: 768px) and (max-width: 1900px) {
     .photo-section{
-        height: 2000px;
+        height: 70vh;
+    }
+    .cover-photo {
+        height: 100vh;
     }
     .main-content {
         padding: 0;
