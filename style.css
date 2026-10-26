@@ -156,7 +156,7 @@ body {
 }
 .rsvp-actions .rsvp-yes,
 .rsvp-actions .rsvp-yes:hover {
-    background: #9db2c9 !important;
+    background: #ffffff !important;
     border: none;
     color: #0B1F3A !important;
     box-shadow: 0 3px 10px rgba(11, 31, 58, 0.25);
@@ -178,6 +178,7 @@ body {
 #guest-count {
     display: block;
     margin: 0 auto;
+    padding: 10px;
     background: transparent !important;
     border: none !important;
     box-shadow: 0 3px 10px rgba(11, 31, 58, 0.25);
@@ -187,6 +188,9 @@ body {
     margin: 24px auto 0;
     color: #0B1F3A;
     font-size: 24px;
+}
+[hidden] {
+    display: none !important;
 }
 
 #rsvp-name:hover, #rsvp-name:focus {

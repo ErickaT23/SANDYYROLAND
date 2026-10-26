@@ -232,6 +232,17 @@ document.addEventListener("DOMContentLoaded", function() {
         rsvpMessage.hidden = false;
     }
 
+    async function lockIfAlreadyConfirmed() {
+        const guest = window.currentGuest;
+        if (!guest || !window.RSVPDatabase?.getConfirmation) return;
+        const confirmation = await window.RSVPDatabase.getConfirmation(guest.id);
+        if (!confirmation) return;
+        rsvpAnswer = confirmation.respuesta === "si" ? "si" : "no";
+        showRsvpResult();
+    }
+
+    setTimeout(lockIfAlreadyConfirmed, 0);
+
     rsvpYesButton.addEventListener("click", () => selectRsvpAnswer("si"));
     rsvpNoButton.addEventListener("click", () => selectRsvpAnswer("no"));
     rsvpConfirmButton.addEventListener("click", async () => {

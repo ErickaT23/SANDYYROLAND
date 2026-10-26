@@ -36,6 +36,11 @@ async function saveConfirmation(confirmation) {
   return payload;
 }
 
+async function getConfirmation(id) {
+  const snapshot = await get(ref(db, `${eventPath}/rsvp/${cleanKey(id)}`));
+  return snapshot.exists() ? snapshot.val() : null;
+}
+
 function subscribeToInvitados(callback) {
   return onValue(ref(db, `${eventPath}/invitados`), (snapshot) => {
     const value = snapshot.val() || {};
@@ -57,7 +62,7 @@ async function updateInvitado(id, data) {
   return payload;
 }
 
-window.RSVPDatabase = { saveConfirmation, subscribeToInvitados, subscribeToConfirmations, updateInvitado, eventId };
+window.RSVPDatabase = { saveConfirmation, getConfirmation, subscribeToInvitados, subscribeToConfirmations, updateInvitado, eventId };
 
 console.log("✅ Firebase conectado correctamente!");
 
