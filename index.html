@@ -86,8 +86,10 @@
                  <h3>Padres de la novia</h3>
                  <p>Alfredo Macario y Marta Girón</p>
              </div>
-             <div class="photo-full fade-in-element">
-                 <img src="/images/S1.png" alt="Separador" loading="lazy">
+             <div class="child-section fade-in-element">
+                 <img src="/images/BB.png" alt="Nuestro hijo" loading="lazy">
+                 <h2>El fruto de nuestro amor</h2>
+                 <p>Antes de celebrar nuestro sí, ya teníamos el regalo más hermoso: nuestro hijo, la bendición que hace de nuestra historia una familia.</p>
              </div>
              <div class="guest-section fade-in-element fade-in-element">
                        <p id="guest-name" class="fade-in-element"></p>
@@ -256,9 +258,6 @@
                     </button>
                 </div>
             </div>  
-            <div class="photo-full wide-photo fade-in-element fade-in-element">
-                <img src="/images/S3.png" alt="Foto de la pareja" loading="lazy">
-            </div>
             <div class="gallery-section fade-in-element fade-in-element" style="display:none;">
                 <h2>Galería de fotos</h2>
             
@@ -328,11 +327,6 @@
                     <a class="upload-btn" href="https://drive.google.com/drive/folders/1Fp0t_SmKJ9N1mRKHUNQrJTGZoTwYt6FV?usp=drive_link" target="_blank">SUBIR FOTOS</a>
                 </div>
             </div>
-             <div class="child-section fade-in-element">
-                 <img src="/images/BB.png" alt="Nuestro hijo" loading="lazy">
-                 <h2>El fruto de nuestro amor</h2>
-                 <p>Nuestro amor se hizo aún más grande con la llegada de nuestro hijo, la bendición más hermosa de nuestro hogar.</p>
-             </div>
              <div class="rsvp-section fade-in-element fade-in-element">
                  <lord-icon 
                   src="https://cdn.lordicon.com/unkasvor.json"
@@ -345,15 +339,20 @@
                  <h2>Confirmación de Asistencia</h2>
                  <p class="rsvp-intro">Te agradeceremos confirmar tu asistencia y respetar la cantidad de invitados asignada.</p>
                  <input type="text" id="rsvp-name" name="name" value="Nombre del Invitado" readonly>
-                 <p class="rsvp-label rsvp-choice-label">¿Asistirás?</p>
+                  <p class="rsvp-label rsvp-choice-label" id="rsvp-question">¿Asistirás?</p>
                  <div class="rsvp-actions">
                      <button id="btnRsvpSi" class="rsvp-btn rsvp-yes" type="button">Sí, es un gusto.</button>
                      <button id="btnRsvpNo" class="rsvp-btn rsvp-no" type="button">No, lamentablemente no podré.</button>
                  </div>
-                 <button id="btnConfirmarRsvp" type="button">Confirmar</button>
+                  <div id="guest-count-wrapper" hidden>
+                      <p class="rsvp-label rsvp-choice-label">Cantidad de pases a confirmar</p>
+                      <select id="guest-count" class="rsvp-btn" aria-label="Cantidad de pases"></select>
+                  </div>
+                  <button id="btnConfirmarRsvp" type="button" hidden>Confirmar</button>
+                  <p id="rsvp-message" class="rsvp-message" hidden></p>
              </div>
             <div class="photo-full fade-in-element fade-in-element">
-                <img src="/images/S3.jpg" alt="Foto de la pareja" loading="lazy">
+                <img id="couple-carousel" src="/images/S1.png" alt="Foto de la pareja" loading="lazy">
             </div>
              <div class="banner-section fade-in-element fade-in-element1">
                  <p>«Y sobre todas estas cosas vestíos de amor, que es el vínculo perfecto». — Colosenses 3:14</p>
@@ -375,6 +374,7 @@
         <i id="iconoPlayPause" class="fas fa-play" aria-hidden="true"></i>
     </button>
     <audio id="audioPlayer" src="/music/hastamifinal.mp3" loop></audio>
+    <script src="/config.js" defer></script>
     <script type="module" src="/database.js" defer></script>
     <script src="/script.js" defer></script>
     <script type="module" src="/loads.js" defer></script>

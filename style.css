@@ -48,7 +48,6 @@ body {
 .btn-calendar {
     width: min(360px, 85vw);
     background: #0B1F3A !important;
-    border: 1px solid #0B1F3A !important;
     border-radius: 8px;
     color: #ffffff !important;
     font: inherit;
@@ -146,9 +145,51 @@ body {
     color: #ffffff !important;
 }
 
+#rsvp-name {
+    background: transparent;
+    border: none;
+    box-shadow: 0 3px 10px rgba(11, 31, 58, 0.25);
+    background-image: linear-gradient(120deg, #0B1F3A 0%, #52789D 45%, #9DB2C9 70%, #294B70 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.rsvp-actions .rsvp-yes,
+.rsvp-actions .rsvp-yes:hover {
+    background: #9db2c9 !important;
+    border: none;
+    color: #0B1F3A !important;
+    box-shadow: 0 3px 10px rgba(11, 31, 58, 0.25);
+}
+.rsvp-actions .rsvp-no,
+.rsvp-actions .rsvp-no:hover {
+    background: #ffffff !important;
+    border: none;
+    color: #0B1F3A !important;
+    box-shadow: 0 3px 10px rgba(11, 31, 58, 0.25);
+}
+.rsvp-actions .rsvp-btn.selected {
+    background: #9db2c9 !important;
+    color: #0B1F3A !important;
+}
+#guest-count-wrapper {
+    margin: 18px auto;
+}
+#guest-count {
+    display: block;
+    margin: 0 auto;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: 0 3px 10px rgba(11, 31, 58, 0.25);
+    color: #0B1F3A !important;
+}
+.rsvp-message {
+    margin: 24px auto 0;
+    color: #0B1F3A;
+    font-size: 24px;
+}
+
 #rsvp-name:hover, #rsvp-name:focus {
-    background: #0B1F3A;
-    color: #ffffff;
     outline: none;
 }
 
@@ -695,6 +736,16 @@ html, body {
     background-clip: text;
     color: transparent !important;
 }
+.child-section h2,
+.gifts-section h2,
+.dresscode-section h2,
+.rsvp-section h2 {
+    font-size: 30px;
+    background: linear-gradient(120deg, #0B1F3A 0%, #52789D 45%, #9DB2C9 70%, #294B70 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
 .itinerary-details {
     text-align: center;
 }
@@ -923,6 +974,13 @@ html, body {
     height: auto;
     margin-bottom: -10px;
     padding: 0;
+}
+#couple-carousel {
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+#couple-carousel.is-changing {
+    opacity: 0;
 }
 .wide-photo {
     overflow: hidden;

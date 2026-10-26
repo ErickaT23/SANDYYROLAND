@@ -1,6 +1,6 @@
 // Importar Firebase y Realtime Database
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
-import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
+import { getDatabase, ref, push, onValue, get, set } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-database.js";
 
 // Configuración Firebase (reemplaza con la tuya)
 const firebaseConfig = {
@@ -16,6 +16,48 @@ const firebaseConfig = {
 // Inicializar Firebase
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
+
+const eventId = window.rsvpConfig?.eventId || "ronaldysandy2026";
+const eventPath = `eventos/${eventId}`;
+const cleanKey = (value) => String(value || "").replace(/[.#$\[\]/]/g, "_");
+
+async function saveConfirmation(confirmation) {
+  const id = cleanKey(confirmation.id);
+  const response = String(confirmation.respuesta || "no").toLowerCase() === "si" ? "si" : "no";
+  const payload = {
+    id: String(confirmation.id),
+    nombre: String(confirmation.nombre || "Invitado"),
+    pasesAsignados: Math.max(1, Number(confirmation.pasesAsignados) || 1),
+    respuesta: response,
+    cantidadConfirmada: response === "si" ? Math.max(1, Number(confirmation.cantidadConfirmada) || 1) : 0,
+    fechaConfirmacion: Date.now()
+  };
+  await set(ref(db, `${eventPath}/rsvp/${id}`), payload);
+  return payload;
+}
+
+function subscribeToInvitados(callback) {
+  return onValue(ref(db, `${eventPath}/invitados`), (snapshot) => {
+    const value = snapshot.val() || {};
+    callback(Object.values(value));
+  });
+}
+
+function subscribeToConfirmations(callback) {
+  return onValue(ref(db, `${eventPath}/rsvp`), (snapshot) => {
+    const value = snapshot.val() || {};
+    callback(Object.values(value));
+  });
+}
+
+async function updateInvitado(id, data) {
+  const key = cleanKey(id);
+  const payload = { id: String(id), nombre: String(data.nombre || "Invitado"), pases: Math.max(1, Number(data.pases) || 1), activo: data.activo !== false };
+  await set(ref(db, `${eventPath}/invitados/${key}`), payload);
+  return payload;
+}
+
+window.RSVPDatabase = { saveConfirmation, subscribeToInvitados, subscribeToConfirmations, updateInvitado, eventId };
 
 console.log("✅ Firebase conectado correctamente!");
 
@@ -90,4 +132,3 @@ window.toggleWishes = function() {
 document.addEventListener('DOMContentLoaded', () => {
   cargarDeseos();
 });
-

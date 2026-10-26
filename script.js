@@ -12,6 +12,21 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentSlide = 0;   
     const wishes = [];
 
+    const carousel = document.getElementById("couple-carousel");
+    const carouselImages = ["/images/S1.png", "/images/S3.png", "/images/S4.png"];
+    let carouselIndex = 0;
+
+    if (carousel) {
+        setInterval(function () {
+            carouselIndex = (carouselIndex + 1) % carouselImages.length;
+            carousel.classList.add("is-changing");
+            setTimeout(function () {
+                carousel.src = carouselImages[carouselIndex];
+                carousel.classList.remove("is-changing");
+            }, 400);
+        }, 3500);
+    }
+
     // Función para abrir el sobre y reproducir la música
     function openEnvelopeAndPlayMusic() {
         var envelopeTop = document.getElementById("envelope-top");
@@ -191,21 +206,52 @@ document.addEventListener("DOMContentLoaded", function() {
     const rsvpYesButton = document.getElementById("btnRsvpSi");
     const rsvpNoButton = document.getElementById("btnRsvpNo");
     const rsvpConfirmButton = document.getElementById("btnConfirmarRsvp");
+    const guestCountWrapper = document.getElementById("guest-count-wrapper");
+    const guestCount = document.getElementById("guest-count");
+    const rsvpQuestion = document.getElementById("rsvp-question");
+    const rsvpMessage = document.getElementById("rsvp-message");
 
     function selectRsvpAnswer(answer) {
         rsvpAnswer = answer;
         rsvpYesButton.classList.toggle("selected", answer === "si");
         rsvpNoButton.classList.toggle("selected", answer === "no");
+        const passes = Math.max(1, Number(window.currentGuest?.passes) || 1);
+        guestCount.innerHTML = Array.from({ length: passes }, (_, index) => `<option value="${index + 1}">${index + 1} ${index ? "pases" : "pase"}</option>`).join("");
+        guestCountWrapper.hidden = answer !== "si";
+        rsvpConfirmButton.hidden = false;
+    }
+
+    function showRsvpResult() {
+        rsvpQuestion.hidden = true;
+        document.querySelector(".rsvp-actions").hidden = true;
+        guestCountWrapper.hidden = true;
+        rsvpConfirmButton.hidden = true;
+        rsvpMessage.textContent = rsvpAnswer === "si"
+            ? "Gracias por confirmar tu asistencia, te vemos pronto."
+            : "Lamentamos que no puedas acompañarnos, te extrañaremos.";
+        rsvpMessage.hidden = false;
     }
 
     rsvpYesButton.addEventListener("click", () => selectRsvpAnswer("si"));
     rsvpNoButton.addEventListener("click", () => selectRsvpAnswer("no"));
-    rsvpConfirmButton.addEventListener("click", () => {
-        if (!rsvpAnswer) {
-            alert("Por favor, selecciona si asistirás o no.");
-            return;
+    rsvpConfirmButton.addEventListener("click", async () => {
+        const guest = window.currentGuest;
+        if (!rsvpAnswer || !guest || !window.RSVPDatabase?.saveConfirmation) return;
+        rsvpConfirmButton.disabled = true;
+        try {
+            await window.RSVPDatabase.saveConfirmation({
+                id: guest.id,
+                nombre: guest.name,
+                pasesAsignados: guest.passes,
+                respuesta: rsvpAnswer,
+                cantidadConfirmada: rsvpAnswer === "si" ? guestCount.value : 0
+            });
+            showRsvpResult();
+        } catch (error) {
+            console.error(error);
+            rsvpConfirmButton.disabled = false;
+            alert("No se pudo guardar tu confirmación. Intenta nuevamente.");
         }
-        confirmarWhatsApp(rsvpAnswer);
     });
 
     window.submitWish = submitWish;
@@ -218,22 +264,3 @@ window.toggleDetails = function() {
         ? "block" 
         : "none";
 }
-
-window.confirmarWhatsApp = function (respuesta = "si") {
-    const phone = "50236011737";
-  
-    const guest = window.currentGuest;
-  
-    const nombre = guest?.name ? guest.name : "Invitado";
-    const pases = guest?.passes ? guest.passes : 1;
-  
-    const verbo = pases === 1 ? "soy" : "somos";
-  
-    const texto = respuesta === "si"
-        ? `Hola, ${verbo} ${nombre} y confirmo la asistencia a la boda de Ronald y Sandy. Somos ${pases} ${pases === 1 ? "persona" : "personas"}.`
-        : `Hola, ${verbo} ${nombre}. Lamentablemente no podremos asistir a la boda de Ronald y Sandy.`;
-  
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(texto)}`;
-    window.location.href = url;
-  };
-  

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin RSVP | Ronald y Sandy</title>
+  <link rel="stylesheet" href="/dashboard.css">
+</head>
+<body>
+  <main class="panel" id="admin-app" hidden>
+    <header><p class="eyebrow">Administración RSVP</p><h1>Ronald y Sandy</h1><a href="/dashboard.html?key=ronaldysandy-admin-2026">Abrir dashboard</a></header>
+    <section class="card">
+      <h2>Agregar invitado</h2>
+      <form id="guest-form" class="form-grid">
+        <input id="guest-id" placeholder="ID del invitado" required>
+        <input id="guest-name" placeholder="Nombre del invitado" required>
+        <input id="guest-passes" type="number" min="1" value="1" placeholder="Pases" required>
+        <button>Guardar invitado</button>
+      </form>
+      <p id="admin-status" class="status"></p>
+    </section>
+    <section class="card"><h2>Invitados</h2><div class="table-wrap"><table><thead><tr><th>ID</th><th>Nombre</th><th>Pases</th><th>Activo</th><th>Acciones</th></tr></thead><tbody id="guest-rows"></tbody></table></div></section>
+  </main>
+  <p id="restricted" class="restricted">Acceso restringido. Usa el enlace administrativo autorizado.</p>
+  <script src="/config.js" defer></script><script type="module" src="/database.js" defer></script><script src="/admin.js" defer></script>
+</body>
+</html>
