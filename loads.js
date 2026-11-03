@@ -93,5 +93,32 @@ window.localGuests = guests;
       if (section) section.style.display = "none";
     }
 
+    const subscribeRemote = () => {
+      if (!window.RSVPDatabase?.subscribeToInvitados) {
+        setTimeout(subscribeRemote, 100);
+        return;
+      }
+      window.RSVPDatabase.subscribeToInvitados((items) => {
+        const remoteGuest = items.find((item) => String(item.id) === String(guestId) && item.activo !== false);
+        if (!remoteGuest) return;
+        window.currentGuest = {
+          id: String(remoteGuest.id),
+          name: remoteGuest.nombre,
+          passes: Number(remoteGuest.pases) || 1,
+          gender: remoteGuest.gender || "mixto"
+        };
+        const text = window.currentGuest.passes === 1
+          ? `¡${window.currentGuest.name}, está invitado!`
+          : `¡${window.currentGuest.name}, están invitados!`;
+        const nameEl = document.getElementById("guest-name");
+        const passesEl = document.getElementById("passes");
+        const rsvpNameEl = document.getElementById("rsvp-name");
+        if (nameEl) nameEl.textContent = text;
+        if (passesEl) passesEl.textContent = `${window.currentGuest.passes} ${window.currentGuest.passes === 1 ? "pase" : "pases"}`;
+        if (rsvpNameEl) rsvpNameEl.value = window.currentGuest.name;
+      });
+    };
+    subscribeRemote();
+
   });
   

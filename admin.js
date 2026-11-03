@@ -9,14 +9,6 @@
   const rows = document.getElementById("guest-rows");
   let guests = [];
   const setStatus = (text) => { status.textContent = text; };
-  async function syncLocalGuests() {
-    const localGuests = window.localGuests || [];
-    await Promise.all(localGuests.map((guest) => window.RSVPDatabase.updateInvitado(guest.id, {
-      nombre: guest.name,
-      pases: guest.passes,
-      activo: true
-    })));
-  }
   function render() {
     rows.innerHTML = guests.map((guest) => `<tr><td>${guest.id}</td><td>${guest.nombre}</td><td>${guest.pases}</td><td>${guest.activo === false ? "No" : "Sí"}</td><td><button data-edit="${guest.id}">Editar</button> <button data-toggle="${guest.id}">${guest.activo === false ? "Activar" : "Desactivar"}</button></td></tr>`).join("");
     rows.querySelectorAll("[data-edit]").forEach((button) => button.addEventListener("click", async () => {
@@ -33,11 +25,14 @@
       setStatus("Invitado actualizado.");
     }));
   }
-  window.RSVPDatabase?.subscribeToInvitados((items) => { guests = items; render(); });
-  setTimeout(() => syncLocalGuests().catch((error) => {
-    console.error(error);
-    setStatus("No se pudieron sincronizar los invitados.");
-  }), 0);
+  const subscribe = () => {
+    if (!window.RSVPDatabase) {
+      setTimeout(subscribe, 100);
+      return;
+    }
+    window.RSVPDatabase.subscribeToInvitados((items) => { guests = items; render(); });
+  };
+  subscribe();
   document.getElementById("guest-form").addEventListener("submit", async (event) => {
     event.preventDefault();
     const id = document.getElementById("guest-id").value.trim();

@@ -19,7 +19,15 @@
     document.getElementById("confirmation-rows").innerHTML = filtered.map((r) => `<tr><td>${r.id}</td><td>${r.nombre}</td><td>${r.pasesAsignados || r.pases || 1}</td><td>${r.respuesta === "si" ? "Confirmado" : r.respuesta === "no" ? "No asiste" : "Pendiente"}</td><td>${r.respuesta === "pendiente" ? "--" : r.cantidadConfirmada || 0}</td><td>${date(r.fechaConfirmacion)}</td></tr>`).join("");
     document.getElementById("confirmation-cards").innerHTML = filtered.map((r) => `<article class="confirmation-card"><h3><span>#${r.id}</span> · ${r.nombre}</h3><div class="confirmation-card-status">${r.respuesta === "si" ? "Confirmado" : r.respuesta === "no" ? "No asiste" : "Pendiente"}</div><div class="confirmation-card-details"><div><span>Pases</span><strong>${r.pasesAsignados || r.pases || 1}</strong></div><div><span>Pases confirmados</span><strong>${r.respuesta === "pendiente" ? "--" : r.cantidadConfirmada || 0}</strong></div><div><span>Fecha de confirmación</span><strong>${date(r.fechaConfirmacion)}</strong></div></div></article>`).join("");
   }
-  window.RSVPDatabase?.subscribeToConfirmations((items) => { confirmations = items; render(); });
+  const subscribe = () => {
+    if (!window.RSVPDatabase) {
+      setTimeout(subscribe, 100);
+      return;
+    }
+    window.RSVPDatabase.subscribeToInvitados((items) => { guests = items; render(); });
+    window.RSVPDatabase.subscribeToConfirmations((items) => { confirmations = items; render(); });
+  };
+  subscribe();
   document.getElementById("search").addEventListener("input", render);
   document.getElementById("clear").addEventListener("click", () => { document.getElementById("search").value = ""; filter = "todos"; render(); });
   document.querySelectorAll(".filter-chip").forEach((button) => button.addEventListener("click", () => { filter = button.dataset.filter; document.querySelectorAll(".filter-chip").forEach((item) => item.classList.remove("is-active")); button.classList.add("is-active"); render(); }));
